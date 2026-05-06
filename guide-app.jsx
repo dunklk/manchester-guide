@@ -101,13 +101,20 @@ const VENUE_PHOTOS = {
   "Imperial War Museum North": "images/iwm-north.jpg",
 };
 
-function VenueCard({ v }) {
+function VenueCard({ v, onPhotoClick }) {
   const c = CAT_MAP[v.cat];
   const photo = VENUE_PHOTOS[v.name];
   const igHref = v.igUrl || (v.ig ? "https://www.instagram.com/" + v.ig + "/" : null);
   return (
     <article className="venue" id={`v-${v.n}`} data-cat={v.cat} data-comment-anchor={`venue-${v.n}`}>
-      <div className="venue__photo">
+      <div
+        className="venue__photo"
+        onClick={() => photo && onPhotoClick && onPhotoClick(photo, v.name)}
+        style={photo ? { cursor: "zoom-in" } : undefined}
+        role={photo ? "button" : undefined}
+        tabIndex={photo ? 0 : undefined}
+        onKeyDown={(e) => { if (photo && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onPhotoClick && onPhotoClick(photo, v.name); } }}
+      >
         <PhotoSlot name={v.name} label="venue photo" src={photo} />
         <div className="venue__num" style={{ background: c.color }}>{v.n}</div>
         {v.ig && (
@@ -173,7 +180,7 @@ function VenueCard({ v }) {
   );
 }
 
-function CategorySection({ cat, venues }) {
+function CategorySection({ cat, venues, onPhotoClick }) {
   if (venues.length === 0) return null;
   const isNQ = cat.id === "culture";
   return (
@@ -191,7 +198,7 @@ function CategorySection({ cat, venues }) {
         )}
       </header>
       <div className="cat-section__venues">
-        {venues.map(v => <VenueCard key={v.n} v={v} />)}
+        {venues.map(v => <VenueCard key={v.n} v={v} onPhotoClick={onPhotoClick} />)}
       </div>
     </section>
   );
@@ -237,7 +244,7 @@ function ItineraryMap({ stops, theme }) {
   );
 }
 
-function Itinerary({ mapTheme = "light" }) {
+function Itinerary({ mapTheme = "light", onPhotoClick }) {
   const stops = ITINERARY.map((step, i) => {
     const v = VENUES.find(x => x.name === step.venue);
     return v ? { venue: v } : null;
@@ -262,7 +269,14 @@ function Itinerary({ mapTheme = "light" }) {
                 </div>
                 <div className="itin-step__time">{step.time}</div>
               </div>
-              <div className="itin-step__photo">
+              <div
+                className="itin-step__photo"
+                onClick={() => photo && onPhotoClick && onPhotoClick(photo, step.venue)}
+                style={photo ? { cursor: "zoom-in" } : undefined}
+                role={photo ? "button" : undefined}
+                tabIndex={photo ? 0 : undefined}
+                onKeyDown={(e) => { if (photo && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onPhotoClick && onPhotoClick(photo, step.venue); } }}
+              >
                 <PhotoSlot name={step.venue} label="venue photo" src={photo} />
               </div>
               <div className="itin-step__body">
@@ -278,8 +292,36 @@ function Itinerary({ mapTheme = "light" }) {
   );
 }
 
+function Lightbox({ img, onClose }) {
+  useEffect(() => {
+    if (!img) return;
+    const handler = (e) => { if (e.key === "Escape") onClose(); };
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.addEventListener("keydown", handler);
+    return () => {
+      document.body.style.overflow = prev;
+      document.removeEventListener("keydown", handler);
+    };
+  }, [img]);
+  if (!img) return null;
+  return (
+    <div className="lightbox" role="dialog" aria-modal="true" aria-label={img.alt || "Photo"} onClick={onClose}>
+      <button className="lightbox__close" type="button" aria-label="Close" onClick={onClose}>×</button>
+      <img
+        className="lightbox__img"
+        src={img.src}
+        alt={img.alt || ""}
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>
+  );
+}
+
 function App({ mapTheme = "light" }) {
   const [active, setActive] = useState("all");
+  const [lightbox, setLightbox] = useState(null);
+  const openLightbox = (src, alt) => { if (src) setLightbox({ src, alt }); };
 
   const filtered = active === "all" ? VENUES : VENUES.filter(v => v.cat === active);
 
@@ -399,7 +441,7 @@ function App({ mapTheme = "light" }) {
       <div className="sections-wrap">
         <main className="sections">
           {grouped.map(({ cat, venues }) => (
-            <CategorySection key={cat.id} cat={cat} venues={venues} />
+            <CategorySection key={cat.id} cat={cat} venues={venues} onPhotoClick={openLightbox} />
           ))}
         </main>
         <aside className="desktop-side" aria-label="Map sidebar">
@@ -425,7 +467,10 @@ function App({ mapTheme = "light" }) {
       </div>
 
       {/* ITINERARY */}
-      <Itinerary mapTheme={mapTheme} />
+      <Itinerary mapTheme={mapTheme} onPhotoClick={openLightbox} />
+
+      {/* LIGHTBOX */}
+      <Lightbox img={lightbox} onClose={() => setLightbox(null)} />
 
       {/* FOOTER */}
       <footer className="foot">
