@@ -681,11 +681,16 @@ body {
     gap: 48px;
     align-items: start;
   }
-  .intro > .kicker { grid-column: 1 / -1; }
-  .intro__lead { grid-column: 1; font-size: 32px; line-height: 1.25; margin: 0; }
-  .intro__body { grid-column: 1; font-size: 17px; column-count: 1; }
+  .intro > .kicker { grid-column: 1 / -1; grid-row: 1; }
+  .intro__video { display: none; }
+  .intro__lead { grid-column: 1; grid-row: 2; font-size: 32px; line-height: 1.25; margin: 0; }
+  .intro__body { grid-column: 1; grid-row: 3; font-size: 17px; column-count: 1; }
   .intro__callout { grid-column: 2; margin: 0 0 16px; }
-  .intro__callout--nq, .intro__callout--gig, .intro__callout--projekts, .intro__callout--getting-around { grid-column: 2; margin-top: 0; }  /* MAP + FILTER + SECTIONS — 2-col with sticky map sidebar */
+  .intro__callout--projekts { grid-column: 2; grid-row: 2; margin-top: 0; }
+  .intro__callout--getting-around { grid-column: 2; grid-row: 3; margin-top: 0; }
+  .intro__callout--nq, .intro__callout--gig { grid-column: 2; margin-top: 0; }
+
+  /* MAP + FILTER + SECTIONS — 2-col with sticky map sidebar */
   .map-section {
     padding: 64px 64px 32px;
     border-bottom: none;
@@ -723,7 +728,7 @@ body {
   }
   .cat-section__title { font-size: 36px; }
   .cat-section__venues { gap: 18px; }
-  .venue { grid-template-columns: 90px 1fr; gap: 12px; padding-bottom: 14px; }
+  .venue { grid-template-columns: 90px 1fr; gap: 12px; padding-bottom: 14px; min-height: 270px; }
   .venue__photo { width: 90px; height: 110px; }
   .venue__name { font-size: 20px; }
   .venue__blurb { font-size: 13px; }

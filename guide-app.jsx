@@ -65,7 +65,6 @@ function VenueCard({ v }) {
     "The Ivy": "images/the-ivy.jpg",
     "The Lass O'Gowrie": "images/lass-o-gowrie.jpg",
     "The Castle Hotel": "images/castle-hotel.jpg",
-    "El Capo": "images/el-capo.jpg",
     "Big Hands": "images/big-hands.jpg",
     "Peveril of the Peak": "images/peveril.jpg",
     "The Marble Arch": "images/marble-arch.jpg",
@@ -107,6 +106,7 @@ function VenueCard({ v }) {
     "Imperial War Museum North": "images/iwm-north.jpg",
   };
   const photo = photos[v.name];
+  const igHref = v.igUrl || (v.ig && igHref);
   return (
     <article className="venue" id={`v-${v.n}`} data-cat={v.cat} data-comment-anchor={`venue-${v.n}`}>
       <div className="venue__photo">
@@ -115,7 +115,7 @@ function VenueCard({ v }) {
         {v.ig && (
           <a
             className="venue__ig-btn"
-            href={`https://www.instagram.com/${v.ig}/`}
+            href={igHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${v.name} on Instagram`}
@@ -146,10 +146,10 @@ function VenueCard({ v }) {
             <div className="venue__meta-row">
               <a
                 className="venue__ig-handle"
-                href={`https://www.instagram.com/${v.ig}/`}
+                href={igHref}
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={(e) => { e.preventDefault(); window.open(`https://www.instagram.com/${v.ig}/`, '_blank', 'noopener,noreferrer'); }}
+                onClick={(e) => { e.preventDefault(); window.open(igHref, '_blank', 'noopener,noreferrer'); }}
               >@{v.ig}</a>
             </div>
           )}
@@ -341,7 +341,7 @@ function App({ mapTheme = "light" }) {
         <aside className="intro__callout intro__callout--projekts">
           <p className="intro__callout-label">The gig — Mind Enterprise</p>
           <p className="intro__callout-body">
-            <strong>Mind Enterprise at Projekts MCR.</strong> I’ve marked it on the map for you — #28.
+            <strong>Mind Enterprise at Projekts MCR.</strong> I’ve marked it on the map for you — #34.
             The skatepark is under the Mancunian Way flyover, on the edge of the city centre near
             Hulme. It’s still walkable to most places — Manchester’s a walking city if you’re up for
             it and the weather plays ball. Otherwise you’ll have no issues getting an Uber.
