@@ -355,7 +355,7 @@ function ManchesterMap({ venues, categories, activeCat, onPinClick, theme, route
       {zoom === 1 && (
         <div style={{
           position: "absolute",
-          bottom: 10,
+          top: 10,
           left: 10,
           background: isDark ? "rgba(20,18,15,0.85)" : "rgba(255,253,247,0.92)",
           color: isDark ? "#d6cfbe" : "#5a5448",
