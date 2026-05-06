@@ -778,7 +778,7 @@ body {
   }
   .itin-step:last-child { border-right: none; }
   .itin-step__bullet { margin: 0; }
-  .itin-step__name { font-size: 24px; }
+  .itin-step__name { font-size: 24px; min-height: 48px; }
 
   .foot { padding: 80px 64px 96px; }
   .foot__line { font-size: 48px; }

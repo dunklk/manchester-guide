@@ -249,7 +249,6 @@ function Itinerary({ mapTheme = "light" }) {
         <h2 className="itinerary__title">A proper night out</h2>
         <p className="itinerary__sub">Mackie Mayor → Castle → Refuge → Temple → YES. The classic arc.</p>
       </header>
-      <ItineraryMap stops={stops} theme={mapTheme} />
       <ol className="itinerary__list">
         {ITINERARY.map((step, i) => {
           const v = VENUES.find(x => x.name === step.venue);
