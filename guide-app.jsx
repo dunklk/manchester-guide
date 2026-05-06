@@ -106,7 +106,7 @@ function VenueCard({ v }) {
     "Imperial War Museum North": "images/iwm-north.jpg",
   };
   const photo = photos[v.name];
-  const igHref = v.igUrl || (v.ig && igHref);
+  const igHref = v.igUrl || (v.ig ? "https://www.instagram.com/" + v.ig + "/" : null);
   return (
     <article className="venue" id={`v-${v.n}`} data-cat={v.cat} data-comment-anchor={`venue-${v.n}`}>
       <div className="venue__photo">

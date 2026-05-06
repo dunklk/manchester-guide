@@ -129,7 +129,7 @@ body {
 .stamp--small { width: 90px; height: 90px; }
 .stamp--small .stamp__big { font-size: 16px; }
 
-/* ──────────────────────────────────────── intro */
+/* ─────────────────────────────────────── intro */
 .intro {
   padding: 48px 28px 36px;
   border-bottom: 1px solid var(--rule);
@@ -511,6 +511,7 @@ body {
   color: rgba(241,236,224,0.7);
   margin: 0;
   line-height: 1.5;
+  text-wrap: pretty;
 }
 .itinerary__map {
   margin: 24px 0 8px;
@@ -718,18 +719,18 @@ body {
   .sections {
     grid-column: 1;
     padding: 0;
-    column-count: 2;
-    column-gap: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 40px;
   }
   .cat-section {
     padding: 0 0 32px;
-    break-inside: avoid;
   }
-  .cat-section__title { font-size: 36px; }
+  .cat-section__title { font-size: 36px; min-height: 68px; }
+  .cat-section__head { min-height: 110px; }
+  .cat-section__intro { display: none; }
   .cat-section__venues { gap: 18px; }
   .venue { grid-template-columns: 90px 1fr; gap: 12px; padding-bottom: 14px; min-height: 320px; }
-  .cat-section__head { min-height: 110px; }
-  .cat-section__title { min-height: 68px; }
   .venue__photo { width: 90px; height: 110px; }
   .venue__name { font-size: 20px; }
   .venue__blurb { font-size: 13px; }
