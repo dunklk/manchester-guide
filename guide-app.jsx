@@ -256,12 +256,14 @@ function Itinerary({ mapTheme = "light" }) {
           const photo = v ? VENUE_PHOTOS[v.name] : null;
           return (
             <li key={i} className="itin-step">
-              <div className="itin-step__time">{step.time}</div>
-              <div className="itin-step__photo">
-                <PhotoSlot name={step.venue} label="venue photo" src={photo} />
+              <div className="itin-step__header">
                 <div className="itin-step__num" style={{ background: c ? c.color : "#15130f" }}>
                   {i + 1}
                 </div>
+                <div className="itin-step__time">{step.time}</div>
+              </div>
+              <div className="itin-step__photo">
+                <PhotoSlot name={step.venue} label="venue photo" src={photo} />
               </div>
               <div className="itin-step__body">
                 <div className="itin-step__name">{step.venue}</div>

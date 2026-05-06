@@ -544,6 +544,12 @@ body {
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
+.itin-step__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
 .itin-step__time {
   font-family: var(--mono);
   font-size: 13px;
@@ -561,8 +567,6 @@ body {
   overflow: hidden;
 }
 .itin-step__num {
-  position: absolute;
-  top: 8px; left: 8px;
   width: 28px; height: 28px;
   border-radius: 50%;
   color: #fff;
@@ -573,8 +577,7 @@ body {
   align-items: center;
   justify-content: center;
   line-height: 1;
-  z-index: 2;
-  border: 2px solid rgba(0,0,0,0.6);
+  flex: 0 0 auto;
 }
 .itin-step__bullet {
   display: none;
