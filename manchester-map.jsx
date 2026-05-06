@@ -124,9 +124,7 @@ function ManchesterMap({ venues, categories, activeCat, onPinClick, theme, route
   // Stations — re-positioned at the actual icon coordinates from the latest basemap
   // (The basemap has no labels of its own — these ARE the labels.)
   const stations = [
-    { name: "VICTORIA",    x: 47.5, y: 27 },
-    { name: "PICCADILLY",  x: 65,   y: 63 },
-    { name: "OXFORD RD",   x: 47,   y: 81 }
+    { name: "VICTORIA",    x: 47.5, y: 27 }
   ];
 
   // Labels scale-down with zoom so they don't get huge when zoomed in.
