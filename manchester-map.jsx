@@ -146,7 +146,7 @@ function ManchesterMap({ venues, categories, activeCat, onPinClick, theme, route
     >
       {/* Base map */}
       <img
-        src="images/manchester-basemap-clean.jpg"
+        src="images/manchester-map.jpg"
         alt=""
         style={{
           position: "absolute",
