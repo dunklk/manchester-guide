@@ -154,11 +154,11 @@ function VenueCard({ v }) {
           <div className="venue__meta-row">
             <a
               className="venue__map-link"
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + " Manchester")}`}
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", " + v.area + ", Manchester")}`}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${v.name} on Google Maps`}
-              onClick={(e) => { e.preventDefault(); window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + " Manchester")}`, '_blank', 'noopener,noreferrer'); }}
+              onClick={(e) => { e.preventDefault(); window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", " + v.area + ", Manchester")}`, '_blank', 'noopener,noreferrer'); }}
             >
               <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
