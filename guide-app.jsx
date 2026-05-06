@@ -56,54 +56,54 @@ function CategoryFilter({ active, setActive }) {
   );
 }
 
+const VENUE_PHOTOS = {
+  "The Refuge": "images/the-refuge.jpg",
+  "20 Stories": "images/20-stories.jpg",
+  "The Ivy": "images/the-ivy.jpg",
+  "The Lass O'Gowrie": "images/lass-o-gowrie.jpg",
+  "The Castle Hotel": "images/castle-hotel.jpg",
+  "Big Hands": "images/big-hands.jpg",
+  "Peveril of the Peak": "images/peveril.jpg",
+  "The Marble Arch": "images/marble-arch.jpg",
+  "The Britons Protection": "images/britons-protection.avif",
+  "The Gas Lamp": "images/gas-lamp.jpg",
+  "Sinclair's Oyster Bar": "images/sinclairs.jpg",
+  "The Old Wellington": "images/old-wellington.webp",
+  "Temple Bar": "images/temple-bar.webp",
+  "YES": "images/yes.jpg",
+  "The Molly House": "images/molly-house.jpg",
+  "Common": "images/common.jpg",
+  "Cloudwater": "images/cloudwater.jpg",
+  "Track Brewing": "images/track.jpg",
+  "Alphabet Brewing": "images/alphabet.jpg",
+  "Port Street Beer House": "images/port-street.jpg",
+  "Rudy's Pizza — Ancoats": "images/rudys.jpg",
+  "Bundobust": "images/bundobust.jpg",
+  "Mackie Mayor": "images/mackie-mayor.jpg",
+  "Dishoom": "images/dishoom.jpg",
+  "Pot Kettle Black": "images/pot-kettle-black.jpg",
+  "Pollen Bakery": "images/pollen.jpg",
+  "Albert Schloss": "images/albert-schloss.webp",
+  "Band on the Wall": "images/band-on-the-wall.jpg",
+  "Freight Island": "images/freight-island.png",
+  "Affleck's": "images/afflecks.jpg",
+  "Piccadilly Records": "images/piccadilly-records.webp",
+  "Projekts MCR": "images/projekts.jpg",
+  "John Rylands Library": "images/john-rylands.jpg",
+  "Central Library": "images/central-library.jpg",
+  "Chetham's Library": "images/chethams.jpg",
+  "Manchester Cathedral": "images/cathedral.jpg",
+  "Manchester Art Gallery": "images/art-gallery.jpg",
+  "Whitworth": "images/whitworth.jpg",
+  "Science & Industry Museum": "images/sim.webp",
+  "People's History Museum": "images/peoples-history.jpeg",
+  "National Football Museum": "images/football-museum.jpg",
+  "Imperial War Museum North": "images/iwm-north.jpg",
+};
+
 function VenueCard({ v }) {
   const c = CAT_MAP[v.cat];
-  // Map venues to known images
-  const photos = {
-    "The Refuge": "images/the-refuge.jpg",
-    "20 Stories": "images/20-stories.jpg",
-    "The Ivy": "images/the-ivy.jpg",
-    "The Lass O'Gowrie": "images/lass-o-gowrie.jpg",
-    "The Castle Hotel": "images/castle-hotel.jpg",
-    "Big Hands": "images/big-hands.jpg",
-    "Peveril of the Peak": "images/peveril.jpg",
-    "The Marble Arch": "images/marble-arch.jpg",
-    "The Britons Protection": "images/britons-protection.avif",
-    "The Gas Lamp": "images/gas-lamp.jpg",
-    "Sinclair's Oyster Bar": "images/sinclairs.jpg",
-    "The Old Wellington": "images/old-wellington.webp",
-    "Temple Bar": "images/temple-bar.webp",
-    "YES": "images/yes.jpg",
-    "The Molly House": "images/molly-house.jpg",
-    "Common": "images/common.jpg",
-    "Cloudwater": "images/cloudwater.jpg",
-    "Track Brewing": "images/track.jpg",
-    "Alphabet Brewing": "images/alphabet.jpg",
-    "Port Street Beer House": "images/port-street.jpg",
-    "Rudy's Pizza — Ancoats": "images/rudys.jpg",
-    "Bundobust": "images/bundobust.jpg",
-    "Mackie Mayor": "images/mackie-mayor.jpg",
-    "Dishoom": "images/dishoom.jpg",
-    "Pot Kettle Black": "images/pot-kettle-black.jpg",
-    "Pollen Bakery": "images/pollen.jpg",
-    "Albert Schloss": "images/albert-schloss.webp",
-    "Band on the Wall": "images/band-on-the-wall.jpg",
-    "Freight Island": "images/freight-island.png",
-    "Affleck's": "images/afflecks.jpg",
-    "Piccadilly Records": "images/piccadilly-records.webp",
-    "Projekts MCR": "images/projekts.jpg",
-    "John Rylands Library": "images/john-rylands.jpg",
-    "Central Library": "images/central-library.jpg",
-    "Chetham's Library": "images/chethams.jpg",
-    "Manchester Cathedral": "images/cathedral.jpg",
-    "Manchester Art Gallery": "images/art-gallery.jpg",
-    "Whitworth": "images/whitworth.jpg",
-    "Science & Industry Museum": "images/sim.webp",
-    "People's History Museum": "images/peoples-history.jpeg",
-    "National Football Museum": "images/football-museum.jpg",
-    "Imperial War Museum North": "images/iwm-north.jpg",
-  };
-  const photo = photos[v.name];
+  const photo = VENUE_PHOTOS[v.name];
   const igHref = v.igUrl || (v.ig ? "https://www.instagram.com/" + v.ig + "/" : null);
   return (
     <article className="venue" id={`v-${v.n}`} data-cat={v.cat} data-comment-anchor={`venue-${v.n}`}>
@@ -253,11 +253,15 @@ function Itinerary({ mapTheme = "light" }) {
         {ITINERARY.map((step, i) => {
           const v = VENUES.find(x => x.name === step.venue);
           const c = v ? CAT_MAP[v.cat] : null;
+          const photo = v ? VENUE_PHOTOS[v.name] : null;
           return (
             <li key={i} className="itin-step">
               <div className="itin-step__time">{step.time}</div>
-              <div className="itin-step__bullet" style={{ background: c ? c.color : "#15130f" }}>
-                {i + 1}
+              <div className="itin-step__photo">
+                <PhotoSlot name={step.venue} label="venue photo" src={photo} />
+                <div className="itin-step__num" style={{ background: c ? c.color : "#15130f" }}>
+                  {i + 1}
+                </div>
               </div>
               <div className="itin-step__body">
                 <div className="itin-step__name">{step.venue}</div>

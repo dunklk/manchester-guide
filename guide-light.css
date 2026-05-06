@@ -538,12 +538,11 @@ body {
   border-top: 1px solid rgba(255,255,255,0.1);
 }
 .itin-step {
-  display: grid;
-  grid-template-columns: 56px 32px 1fr;
-  gap: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   padding: 14px 0;
   border-bottom: 1px solid rgba(255,255,255,0.1);
-  align-items: start;
 }
 .itin-step__time {
   font-family: var(--mono);
@@ -551,20 +550,34 @@ body {
   font-weight: 700;
   color: var(--accent);
   letter-spacing: 0.04em;
-  padding-top: 4px;
+  margin: 0;
 }
-.itin-step__bullet {
+.itin-step__photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #1a1814;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.itin-step__num {
+  position: absolute;
+  top: 8px; left: 8px;
   width: 28px; height: 28px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: #fff;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 700;
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+  z-index: 2;
+  border: 2px solid rgba(0,0,0,0.6);
+}
+.itin-step__bullet {
+  display: none;
 }
 .itin-step__name {
   font-family: var(--display);
@@ -770,15 +783,13 @@ body {
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
   .itin-step {
-    grid-template-columns: 1fr;
-    gap: 8px;
+    gap: 12px;
     padding: 24px 16px;
     border-bottom: none;
     border-right: 1px solid rgba(255,255,255,0.1);
   }
   .itin-step:last-child { border-right: none; }
-  .itin-step__bullet { margin: 0; }
-  .itin-step__name { font-size: 24px; min-height: 48px; }
+  .itin-step__name { font-size: 24px; min-height: 48px; margin-top: 4px; }
 
   .foot { padding: 80px 64px 96px; }
   .foot__line { font-size: 48px; }
