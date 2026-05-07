@@ -127,6 +127,13 @@ function ManchesterMap({ venues, categories, activeCat, onPinClick, theme, route
     { name: "VICTORIA",    x: 47.5, y: 27 }
   ];
 
+  // Landmarks — map markers that are NOT venues in the guide.
+  // Render as a teardrop pin (not a numbered dot) so they read as POIs.
+  const landmarks = [
+    // Maldron Hotel, 60 Charles Street, M1 7DF — east end of Charles St
+    { id: "maldron", label: "HOTEL", x: 62.0, y: 66.0 }
+  ];
+
   // Labels scale-down with zoom so they don't get huge when zoomed in.
   // (Counter-scale: divide font size by zoom roughly.)
   const labelScale = 1 / Math.sqrt(zoom);
@@ -305,6 +312,47 @@ function ManchesterMap({ venues, categories, activeCat, onPinClick, theme, route
               {label}
             </span>
           </button>
+        );
+      })}
+
+      {/* Landmark pins (non-venue POIs — teardrop shape, no number) */}
+      {landmarks.map(lm => {
+        const cx = 50 + (lm.x - 50) * zoom;
+        const cy = 50 + (lm.y - 50) * zoom;
+        return (
+          <div
+            key={lm.id}
+            style={{
+              position: "absolute",
+              left: `calc(${cx}% + ${pan.x}px)`,
+              top: `calc(${cy}% + ${pan.y}px)`,
+              transform: "translate(-50%, -100%)",
+              pointerEvents: "none",
+              transition: dragRef.current ? "none" : "left 0.2s ease-out, top 0.2s ease-out",
+              filter: "drop-shadow(0 1.5px 3px rgba(0,0,0,0.45))",
+              zIndex: 4
+            }}
+          >
+            <svg width="36" height="42" viewBox="0 0 36 42" style={{ display: "block" }}>
+              <path
+                d="M18 0 C8.06 0 0 8.06 0 18 C0 30 18 42 18 42 C18 42 36 30 36 18 C36 8.06 27.94 0 18 0 Z"
+                fill={isDark ? "#f1ece0" : "#15130f"}
+                stroke={isDark ? "#15130f" : "#fffdf6"}
+                strokeWidth="1.5"
+              />
+              <text
+                x="18" y="22"
+                textAnchor="middle"
+                fill={isDark ? "#15130f" : "#fffdf6"}
+                fontSize="8"
+                fontWeight="900"
+                fontFamily="ui-sans-serif, system-ui, sans-serif"
+                style={{ letterSpacing: "0.04em" }}
+              >
+                {lm.label}
+              </text>
+            </svg>
+          </div>
         );
       })}
     </div>
