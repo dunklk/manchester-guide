@@ -107,6 +107,35 @@ body {
 }
 .cover__stamp { margin-top: 22px; align-self: flex-end; }
 
+/* Cover video slot — hidden on mobile (intro slot is used there); shown on desktop */
+.cover__video {
+  display: none;
+  position: relative;
+  aspect-ratio: 9 / 16;
+  width: 100%;
+  max-width: 240px;
+  margin: 24px 0;
+  background: #1a1814;
+  border: 1px solid rgba(241, 236, 224, 0.18);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cover__video > .photo-slot { position: absolute; inset: 0; }
+.cover__video-cap {
+  position: absolute;
+  left: 10px; bottom: 10px;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #fffdf6;
+  background: rgba(0,0,0,0.55);
+  padding: 4px 8px;
+  border-radius: 3px;
+  margin: 0;
+  pointer-events: none;
+}
+
 .stamp {
   width: 110px; height: 110px;
   border-radius: 50%;
@@ -699,13 +728,39 @@ body {
    layer rearranges it into a wide editorial spread.
    ────────────────────────────────────────────────────── */
 @media (min-width: 900px) {
-  body { background: #1a1814; padding: 32px 0; }
+  body {
+    background-color: var(--paper);
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08 0 0 0 0 0.07 0 0 0 0 0.06 0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.5'/></svg>");
+    padding: 32px 0;
+    position: relative;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: "MANCHESTER";
+    position: fixed;
+    top: 50%;
+    left: -2vw;
+    transform: translateY(-50%) rotate(-90deg);
+    transform-origin: center center;
+    font-family: var(--display);
+    font-weight: 400;
+    font-size: clamp(140px, 16vw, 240px);
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--ink);
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
 
   .guide {
     max-width: 1280px;
     margin: 0 auto;
     background: var(--paper);
-    box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+    box-shadow: 0 12px 40px rgba(20, 18, 14, 0.10);
+    position: relative;
+    z-index: 1;
   }
 
   /* COVER — full-bleed, two-column spread */
@@ -733,7 +788,8 @@ body {
     min-height: 720px;
   }
   .cover__title { font-size: 140px; }
-  .cover__list { font-size: 32px; }
+  .cover__list { font-size: 32px; margin-bottom: 0; }
+  .cover__video { display: block; }
 
   /* INTRO — 2-col with callout sidebar */
   .intro {

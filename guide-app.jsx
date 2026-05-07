@@ -359,6 +359,10 @@ function App({ mapTheme = "light" }) {
             <li>Proper food.</li>
             <li>Good coffee.</li>
           </ul>
+          <div className="cover__video">
+            <PhotoSlot name="cover video" label="drop intro video here" />
+            <p className="cover__video-cap">Press play — quick hello before you dive in.</p>
+          </div>
           <p className="cover__foot">Not a generic tourist guide.<br/>The places that matter.</p>
         </div>
       </header>
