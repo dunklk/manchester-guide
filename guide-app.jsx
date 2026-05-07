@@ -403,11 +403,12 @@ function App({ mapTheme = "light" }) {
         <aside className="intro__callout intro__callout--getting-around">
           <p className="intro__callout-label">Talking of getting around …</p>
           <p className="intro__callout-body">
-            <strong>Trams will get you everywhere.</strong> Just tap in and out with a debit card at
-            the platform. The <strong>Bee Network</strong> app is good for planning ahead, but you
-            don’t really need it — if you end up going the wrong way, hop off and grab one heading
-            back. You’ll be unlucky to wait more than five minutes. If all else fails, Uber is your
-            friend.
+            <strong>Trams will get you everywhere.</strong> The <strong>Bee Network</strong> app is
+            good for getting your bearings and finding the nearest tram stop. Beyond that, they're
+            very regular so you shouldn't need to plan meticulously. Just tap in and out at the
+            platform with a debit card. If you go the wrong way, hop off and grab one heading back —
+            you can't go wrong. You’ll be unlucky to wait more than five minutes. If all else fails,
+            Uber is your friend.
           </p>
         </aside>
       </section>
