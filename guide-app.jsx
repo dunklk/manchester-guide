@@ -99,6 +99,9 @@ const VENUE_PHOTOS = {
   "People's History Museum": "images/peoples-history.jpeg",
   "National Football Museum": "images/football-museum.jpg",
   "Imperial War Museum North": "images/iwm-north.jpg",
+  "Federal": "images/federal.jpg",
+  "FDN Coffee": "images/fdn-coffee.jpg",
+  "Idle Hands": "images/idle-hands.jpg",
 };
 
 function VenueCard({ v, onPhotoClick }) {
