@@ -740,7 +740,7 @@ body {
     content: "";
     position: fixed;
     inset: 0;
-    background-image: url("images/cover-mural.jpg");
+    background-image: url("images/manchester-halftone.jpg");
     background-size: cover;
     background-position: center;
     filter: blur(5px);
