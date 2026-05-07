@@ -743,8 +743,8 @@ body {
     background-image: url("images/cover-mural.jpg");
     background-size: cover;
     background-position: center;
-    filter: blur(60px);
-    opacity: 0.18;
+    filter: blur(18px);
+    opacity: 0.22;
     z-index: -1;
     pointer-events: none;
   }
