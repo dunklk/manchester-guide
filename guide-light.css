@@ -428,10 +428,10 @@ body {
 
 /* video slot at top of intro */
 .intro__video {
-  margin: 18px auto 22px;
+  margin: 18px 0 22px;
   position: relative;
   aspect-ratio: 9 / 16;
-  max-width: 280px;
+  width: 100%;
   background: #1a1814;
   border: 1px solid rgba(21,19,15,0.18);
   border-radius: 4px;
