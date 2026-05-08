@@ -124,6 +124,7 @@ function VenueCard({ v, onPhotoClick }) {
   const c = CAT_MAP[v.cat];
   const photo = VENUE_PHOTOS[v.name];
   const igHref = v.igUrl || (v.ig ? "https://www.instagram.com/" + v.ig + "/" : null);
+  const mapHref = v.mapUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", " + v.area + ", Manchester")}`;
   return (
     <article className="venue" id={`v-${v.n}`} data-cat={v.cat} data-comment-anchor={`venue-${v.n}`}>
       <div
@@ -180,11 +181,11 @@ function VenueCard({ v, onPhotoClick }) {
           <div className="venue__meta-row">
             <a
               className="venue__map-link"
-              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", " + v.area + ", Manchester")}`}
+              href={mapHref}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`${v.name} on Google Maps`}
-              onClick={(e) => { e.preventDefault(); window.open(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.name + ", " + v.area + ", Manchester")}`, '_blank', 'noopener,noreferrer'); }}
+              onClick={(e) => { e.preventDefault(); window.open(mapHref, '_blank', 'noopener,noreferrer'); }}
             >
               <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
