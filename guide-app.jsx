@@ -28,6 +28,22 @@ function PhotoSlot({ name, label, src }) {
   );
 }
 
+// YouTube intro video — Unlisted, hosted on YouTube to keep the repo small.
+const INTRO_VIDEO_ID = "tAfTGNNfPqU";
+function IntroVideoEmbed({ title }) {
+  return (
+    <iframe
+      className="video-embed"
+      src={`https://www.youtube-nocookie.com/embed/${INTRO_VIDEO_ID}?rel=0&modestbranding=1`}
+      title={title || "Manchester intro"}
+      loading="lazy"
+      frameBorder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowFullScreen
+    />
+  );
+}
+
 function CategoryFilter({ active, setActive }) {
   return (
     <div className="filter-bar" role="tablist">
@@ -363,7 +379,7 @@ function App({ mapTheme = "light" }) {
             <li>Good coffee.</li>
           </ul>
           <div className="cover__video">
-            <PhotoSlot name="cover video" label="drop intro video here" />
+            <IntroVideoEmbed title="Manchester intro — cover" />
             <p className="cover__video-cap">Press play — quick hello before you dive in.</p>
           </div>
           <p className="cover__foot">Not a generic tourist guide.<br/>The places that matter.</p>
@@ -376,7 +392,7 @@ function App({ mapTheme = "light" }) {
 
         {/* Video intro slot */}
         <div className="intro__video">
-          <PhotoSlot name="intro video" label="drop intro video here" />
+          <IntroVideoEmbed title="Manchester intro" />
           <p className="intro__video-cap">Press play — quick hello before you dive in.</p>
         </div>
 
